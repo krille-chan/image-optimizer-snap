@@ -1,0 +1,44 @@
+name: image-optimizer
+base: core18
+version: "0.1.17"
+summary: Simple lossless image compression
+description: |
+  Compress your images with ease without the cost of loosing the images quality using JpegOptim and OptiPng.
+  Features:
+
+  - Compress bmp, jpg / jpeg, png, pnm and tiff with lossless compression
+  - Works offline, always ready where and whenever needed
+  - A clean interface, optimize your images effortlessly
+  - Easily quit the application by pressing Ctrl + Q
+grade: stable
+confinement: strict
+icon: snap/gui/icon.svg
+
+parts:
+  image-optimizer:
+    plugin: meson
+    source: https://github.com/GijsGoudzwaard/Image-Optimizer.git
+    source-type: git
+    meson-parameters: [--buildtype=release]
+    build-packages:
+      - libgranite-dev
+      - valac
+    stage-packages:
+      - libgranite-dev
+      - jpegoptim
+      - optipng
+
+slots:
+  dbus-svc:
+    interface: dbus
+    bus: session
+    name: com.github.gijsgoudzwaard.image-optimizer
+
+apps:
+  image-optimizer:
+    command: com.github.gijsgoudzwaard.image-optimizer
+    extensions: [gnome-3-28]
+    plugs:
+      - home
+    slots:
+      - dbus-svc
