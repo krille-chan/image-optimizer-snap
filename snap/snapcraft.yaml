@@ -1,6 +1,6 @@
 name: image-optimizer
-base: core18
-version: "0.1.17"
+base: core22
+version: git
 summary: Simple lossless image compression
 description: |
   Compress your images with ease without the cost of loosing the images quality using JpegOptim and OptiPng.
@@ -37,7 +37,7 @@ slots:
 apps:
   image-optimizer:
     command: com.github.gijsgoudzwaard.image-optimizer
-    extensions: [gnome-3-28]
+    extensions: [gnome]
     plugs:
       - home
     slots:
